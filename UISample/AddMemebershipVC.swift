@@ -51,7 +51,7 @@ class AddMemebership: UIViewController {
    
 
     @IBAction func Add(_ sender: AnyObject) {
-        // 추가 버튼 누를시
+        // 추가or수정 버튼 누를시
         
         if ad?.modifyCheck == 1 {
             ad?.membershipName[(ad?.showNow)!] = self.paramName.text!
