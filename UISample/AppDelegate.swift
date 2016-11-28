@@ -7,21 +7,55 @@
 //
 
 import UIKit
+//var KT = MembershipStruct().self
 
+var KT = MembershipStruct().self
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    
+    
+
+    
+    
+    
+    var Test = MembershipStruct().self
+    
+
+    var membership : Array = [KT]
+    //var membership = [MembershipStruct]()
+    // 저장소 임시 대체
+   
+    
+    
+    
+    
+    
+    ///
     var window: UIWindow?
     
-    var Test : Int?
-    var Test2 : String?
-    var paramEmail : String?
+    
     var showNow : Int?
     
     var membershipName = ["KT"]
     var membershipLogo = [UIImage(named: "ktLogo")]
     var barcode = [33333]
     var modifyCheck : Int = 0
+    
+    // 바코드 생성 함수
+    func fromString(string: String) -> UIImage? {
+        let data = string.data(using: String.Encoding.ascii)
+        if let filter = CIFilter(name: "CICode128BarcodeGenerator") {
+            filter.setValue(data, forKey: "inputMessage")
+            let transform = CGAffineTransform(scaleX: 3, y: 3)
+            
+            if let output = filter.outputImage?.applying(transform) {
+                return UIImage(ciImage: output)
+            }
+        }
+        
+        return nil
+    }
     
     
 

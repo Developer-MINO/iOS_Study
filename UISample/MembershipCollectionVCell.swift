@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CollectionViewCell : UICollectionViewCell {
+class MembershipCollectionVCell : UICollectionViewCell {
 
  
     //셀이 가지고 있는 값
@@ -18,5 +18,6 @@ class CollectionViewCell : UICollectionViewCell {
     @IBOutlet weak var LogoName: UILabel!
 
 
+    
 }
 

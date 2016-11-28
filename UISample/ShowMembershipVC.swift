@@ -8,16 +8,24 @@
 
 import UIKit
 
-class CollectionShowController: UIViewController {
+class ShowMembershipVC: UIViewController {
 
    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.ShowBarcode.image = self.fromString(string: String(describing: barcode))
-        //바코드 이미지로 변환
-        self.ShowName.text = self.title
-        //전달받은 string 띄우기
+//구조체 통일
+        self.ShowBarcode.image = ad?.membership[(ad?.showNow)!].barcodeImage
+        //imageView에 바코드 이미지 입력
+        self.ShowName.text = ad?.membership[(ad?.showNow)!].brand
+        //Label에 브랜드명 입력
+        
+        
+////구조체 통일 전
+//        self.ShowBarcode.image = ad?.fromString(string: String(describing: barcode))
+//        //바코드 이미지로 변환
+//        self.ShowName.text = self.title
+//        //전달받은 string 띄우기
         
         
         
@@ -34,10 +42,18 @@ class CollectionShowController: UIViewController {
         //수정시 값 되불러 오기
         //방식 차이( viewDidLoad:선택된 셀로부터 값 받기 / viewWillAppear: 앱델리게이트에 저장된 값 받기)
         if ad?.modifyCheck == 1 {
-            self.ShowBarcode.image = self.fromString(string: String(describing: ad?.barcode[(ad?.showNow)!]))
-            self.ShowName.text = ad?.membershipName[(ad?.showNow)!]
+////구조체 통일 전
+            self.ShowBarcode.image = ad?.membership[(ad?.showNow)!].barcodeImage
+            self.ShowName.text = ad?.membership[(ad?.showNow)!].brand
+            
+////구조체 통일 후
+//            self.ShowBarcode.image = ad?.fromString(string: String(describing: ad?.barcode[(ad?.showNow)!]))
+//            self.ShowName.text = ad?.membershipName[(ad?.showNow)!]
+
         }
     }
+    
+    
 
     var ad = UIApplication.shared.delegate as? AppDelegate
     //AppDelegate 사용
@@ -66,19 +82,7 @@ class CollectionShowController: UIViewController {
     
     
     // 바코드 이미지로 변환 함수
-    func fromString(string: String) -> UIImage? {
-        let data = string.data(using: String.Encoding.ascii)
-        if let filter = CIFilter(name: "CICode128BarcodeGenerator") {
-            filter.setValue(data, forKey: "inputMessage")
-            let transform = CGAffineTransform(scaleX: 3, y: 3)
-            
-            if let output = filter.outputImage?.applying(transform) {
-                return UIImage(ciImage: output)
-            }
-        }
-        
-        return nil
-    }
+    
     /*
     // MARK: - Navigation
 

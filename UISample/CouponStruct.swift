@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-struct Coupon {
+struct CouponStruct {
     var brand : String?
     var product : String?
     var barcode : Int?
